@@ -1,5 +1,4 @@
 #PILLOW installed via "brew install homebrew/python/pillow"
-#HOW to open image in python "https://stackoverflow.com/questions/138250/how-can-i-read-the-rgb-value-of-a-given-pixel-in-python"
 from PIL import Image
 from huffman import encode
 import binascii
@@ -9,9 +8,6 @@ im = Image.open("test.bmp")
 width,height = im.size
 pixel_values = list(im.getdata()) #all pixel values in series (255,255,255), etc.
 print "size of image:", width, height
-
-
-
 
 
 #COLOR PALETTE CAPTURES ALL POSSIBLE PIXEL VALUES IN DICT
@@ -53,8 +49,6 @@ print encodertableheader
   #commas
   #spacing
 
-
-
 #End of string with huffman marker, add filler to round to multiple of 8
 bits = 7 #SET TO 7 for 128 Base, SET TO 8 FOR 256 Base
 img_bin_str = img_bin_str + huff_dict['end']
@@ -79,12 +73,6 @@ while i < len(img_bin_str):
 
 #ADD ENCODETABLEHEADER
 
-print img_char
-
-
-
-
-
 ####### CREATE TOKEN WITH STRING INVOLVED
 import json
 import requests
@@ -96,7 +84,7 @@ url = 'http://ec2-54-93-227-47.eu-central-1.compute.amazonaws.com:14000/api/'
 headers = {'content-type': 'application/json'}
 auth = HTTPBasicAuth('rpc','rpc')
 
-#CREATE TOKEN
+#CREATE TOKEN on Counterparty testnet
 payload = {
            "method": "create_issuance",
            "params": {
@@ -129,30 +117,18 @@ for i in range(len(img_char)):
 if img_bin_str == img_bin_str_2:
 	print 'ok'
 
+
+
+
+
+
+
+#Below: Notes to self
+
 #Huffman decoding 
 #include decoding table
 #Decoding table not included yet
 #Parse and recreate 11 x 11 image
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #This website works http://www.rapidtables.com/convert/number/ascii-to-binary.htm
 #https://cryptii.com/text/select
@@ -161,35 +137,11 @@ if img_bin_str == img_bin_str_2:
 #text_file.close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #dict length = total events
 #build dict probability event:0-1
 
-
-
-
+#To Dos
 #build color probabilities
-
-
-
-
-
-
 #build color palette
 #build huffman code based on color probabilities
 #translate pixel values into huffman binary
